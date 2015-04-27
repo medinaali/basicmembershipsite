@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   end
 
   get 'myideas' => 'ideas#myideas'
+
+  get 'ideadetails' => 'ideas#ideadetails'
+  
   get 'sessions/new'
   get 'sessions/create'
   get 'sessions/destroy'

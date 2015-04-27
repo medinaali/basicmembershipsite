@@ -1,27 +1,18 @@
-<h3>Welcome</h3>
-
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Ideas</h1>
-
-sort by: <%= link_to 'Ascending', visitorascending_path %> - 
-<%= link_to 'Descending', visitordescending_path %> - 
-<%= link_to 'Newest to Oldest', visitornewest_path %> -
-<%= link_to 'Oldest to Newest', visitoroldest_path %>
-
+<center> <h4> <font color="white"> IDEAS </font> </h4> </center>
+<center>
 
 <table>
   <thead>
     <tr>
-      <th> Title </th>
+      <th>Title</th>
       <th>Idea description</th>
       <th>Skill description</th>
-      <th>User</th>
-      <th>Platform</th>
-      <% if logged_in? %>
-      <th> Role Status</th>
-      <% end %>
+ 
+
       <th colspan="3"></th>
+
     </tr>
   </thead>
 
@@ -31,30 +22,19 @@ sort by: <%= link_to 'Ascending', visitorascending_path %> -
         <td><%= idea.title %></td>
         <td><%= idea.idea_description %></td>
         <td><%= idea.skill_description %></td>
-        <td><%= idea.user.name %></td>
-        <td><%= idea.platform.name %></td>
-
-<% if logged_in? %>
-
-<td><% idea.roles.all.each do|role| %> 
-          <ul>
-            <li>
-              <%= role.name%> - 
-              <% if idea.idears.find_by(role_id:role.id).filled? %>
-              <%= User.find_by(id:(idea.idears.find_by(role_id:role.id).user_id)).name %>
-              <% else %>
-              <%= link_to 'Register', idear_path(idea.idears.find_by(role_id: role.id)) %> 
-            <% end %>
-            </li>
-           </ul>
-    <% end %>
-
-</td>
-  <% end %>
+    
 
         <td><%= link_to 'Show', idea %></td>
 
+        <% if logged_in? && current_user.admin? %>
+        <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
+        <td><%= link_to 'Destroy', idea, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
+<br>
+
+<%= link_to 'New Idea', new_idea_path %> |
+<%= link_to 'More Idea Details', ideadetails_path %>
