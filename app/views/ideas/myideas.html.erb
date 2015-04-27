@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 <% @ideas.each do |idea| %>
 <% if idea.user_id == current_user.id %>
-<h1>Listing Ideas</h1>
-
+<center> <h4> <font color="white"> YOUR IDEAS </font> </h4> </center>
+<center>
 <table>
   <thead>
     <tr>
@@ -50,11 +50,10 @@
 
   </tbody>
 </table>
+</center>
     <% end %>
      <% end %>
-<br>
-<h2> You do not have an idea, click below to create a new idea </h2>
-<br>
-  <h3>  <%= link_to 'New idea', new_idea_path %> </h3>
+
+ <%= link_to 'New idea', new_idea_path %> 
 </br>
 
