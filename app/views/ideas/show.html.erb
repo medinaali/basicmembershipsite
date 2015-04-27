@@ -15,5 +15,41 @@
   <%= @idea.skill_description %>
 </p>
 
+<p>
+  <strong>User:</strong>
+  <%= @idea.user.name%>
+</p>
+
+<p>
+  <strong>Platform:</strong>
+  <%= @idea.platform.name%>
+</p>
+
+<p>
+  <strong> Role Status: </strong>
+ <% @idea.roles.all.each do|role| %> 
+          <ul>
+            <li>
+              <%= role.name%> - 
+              <% if @idea.idears.find_by(role_id:role.id).filled? %>
+              <%= User.find_by(id:(@idea.idears.find_by(role_id:role.id).user_id)).name %>
+              <% else %>
+              <%= link_to 'Register', idear_path(@idea.idears.find_by(role_id: role.id)) %> 
+          <% end %>
+            </li>
+           </ul>
+           <% end %>
+</p>
+
+
+<% if logged_in? %>
+
+<% if current_user.admin? %>
+
 <%= link_to 'Edit', edit_idea_path(@idea) %> |
-<%= link_to 'Back', ideas_path %>
+<%= link_to 'Back', ideas_path%>
+<% else %>
+
+<%= link_to 'Back', root_path %>
+<% end %>
+<% end %>

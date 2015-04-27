@@ -1,9 +1,9 @@
 require 'test_helper'
 
 class IdeasControllerTest < ActionController::TestCase
-  setup do
-    @idea = ideas(:one)
-  end
+ def setup
+  @idea = Idea.new(Title: "Apple", Idea_Description: "Apple is a fruit", Skill_Description: "Healthy")
+end
 
   test "should get index" do
     get :index

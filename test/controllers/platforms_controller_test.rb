@@ -1,9 +1,9 @@
 require 'test_helper'
 
 class PlatformsControllerTest < ActionController::TestCase
-  setup do
-    @platform = platforms(:one)
-  end
+def setup
+  @platform = Platform.new(name: "iOS")
+end
 
   test "should get index" do
     get :index

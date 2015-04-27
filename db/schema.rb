@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150426181126) do
+ActiveRecord::Schema.define(version: 20150426234330) do
+
+  create_table "idears", force: :cascade do |t|
+    t.integer  "role_id"
+    t.integer  "user_id"
+    t.integer  "idea_id"
+    t.boolean  "filled",     default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   create_table "ideas", force: :cascade do |t|
     t.string   "title"
@@ -31,7 +40,6 @@ ActiveRecord::Schema.define(version: 20150426181126) do
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
-    t.integer  "idea_id"
     t.boolean  "filled",     default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
@@ -41,9 +49,10 @@ ActiveRecord::Schema.define(version: 20150426181126) do
     t.string   "name"
     t.string   "email"
     t.string   "password"
-    t.boolean  "admin",      default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "admin",           default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.string   "password_digest"
   end
 
 end

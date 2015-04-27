@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Idears</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Role</th>
+      <th>User</th>
+      <th>Idea</th>
+      <th>Filled</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @idears.each do |idear| %>
+      <tr>
+        <td><%= idear.role_id %></td>
+        <td><%= idear.user_id %></td>
+        <td><%= idear.idea_id %></td>
+        <td><%= idear.filled %></td>
+        
+        <td><%= link_to 'Show', idear %></td>
+        <td><%= link_to 'Edit', edit_idear_path(idear) %></td>
+        <td><%= link_to 'Destroy', idear, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Idear', new_idear_path %>

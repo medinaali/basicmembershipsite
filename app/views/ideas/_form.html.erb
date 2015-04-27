@@ -5,6 +5,8 @@
     <%= f.input :title %>
     <%= f.input :idea_description %>
     <%= f.input :skill_description %>
+    <%= f.association :platform %>
+    <%= f.association :roles, :as => :check_boxes %>
   </div>
 
   <div class="form-actions">

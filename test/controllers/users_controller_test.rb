@@ -1,9 +1,9 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
-  setup do
-    @user = users(:one)
-  end
+def setup
+  @user = User.new(name: "Tartan", email: "tartan@cmu.edu")
+end
 
   test "should get index" do
     get :index

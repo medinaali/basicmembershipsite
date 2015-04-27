@@ -1,4 +1,5 @@
 class IdeasController < ApplicationController
+  skip_before_action :authenticate, only: [:index, :show]
   before_action :set_idea, only: [:show, :edit, :update, :destroy]
 
   # GET /ideas
@@ -6,6 +7,27 @@ class IdeasController < ApplicationController
   def index
     @ideas = Idea.all
   end
+
+  def ascending
+    @ideas = Idea.ascending
+  end
+
+  def descending
+    @ideas = Idea.descending
+  end
+
+  def newest
+    @ideas = Idea.newest
+  end
+
+  def oldest
+    @ideas = Idea.oldest
+  end  
+
+  def myideas
+    @ideas = Idea.all
+  end
+
 
   # GET /ideas/1
   # GET /ideas/1.json
@@ -17,6 +39,8 @@ class IdeasController < ApplicationController
     @idea = Idea.new
   end
 
+
+
   # GET /ideas/1/edit
   def edit
   end
@@ -25,6 +49,7 @@ class IdeasController < ApplicationController
   # POST /ideas.json
   def create
     @idea = Idea.new(idea_params)
+    @idea.user_id=current_user.id
 
     respond_to do |format|
       if @idea.save
@@ -69,6 +94,6 @@ class IdeasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def idea_params
-      params.require(:idea).permit(:title, :idea_description, :skill_description)
+      params.require(:idea).permit(:title, :idea_description, :skill_description, :user_id, :platform_id, :role_ids => [])
     end
 end

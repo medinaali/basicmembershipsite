@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Ideas</h1>
+sort by: <%= link_to 'Ascending', visitorascending_path %> - 
+<%= link_to 'Descending', visitordescending_path %> - 
+<%= link_to 'Newest to Oldest', visitornewest_path %> -
+<%= link_to 'Oldest to Newest', visitoroldest_path %>
+<table>
+  <thead>
+    <tr>
+      <th> Title </th>
+      <th>Idea description</th>
+      <th>Skill description</th>
+      <th>User</th>
+      <th>Platform</th>
+
+  
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ideas.each do |idea| %>
+      <tr>
+        <td><%= idea.title %></td>
+        <td><%= idea.idea_description %></td>
+        <td><%= idea.skill_description %></td>
+        <td><%= idea.user%></td>
+        <td><%= idea.platform%></td>
+        <td><%= link_to 'Show', idea %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+

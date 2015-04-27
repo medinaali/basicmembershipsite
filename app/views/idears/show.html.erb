@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Idea:</strong>
+  <%= Idea.find_by(id: (@idear.idea_id)).title %>
+</p>
+
+<p>
+  <strong>Role:</strong>
+  <%= Role.find_by(id:(@idear.role_id)).name %>
+</p>
+
+<%= render 'register' %>
+
+<%= link_to 'Back', ideas_path %>

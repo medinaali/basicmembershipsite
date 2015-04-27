@@ -1,6 +1,6 @@
 class PlatformsController < ApplicationController
   before_action :set_platform, only: [:show, :edit, :update, :destroy]
-
+  before_action :admin_only
   # GET /platforms
   # GET /platforms.json
   def index
@@ -71,4 +71,11 @@ class PlatformsController < ApplicationController
     def platform_params
       params.require(:platform).permit(:name)
     end
+    
+    def admin_only
+      if !current_user.admin?
+        redirect_to root_path
+      end
+    end
+
 end

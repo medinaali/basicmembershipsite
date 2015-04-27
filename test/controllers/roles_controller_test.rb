@@ -1,9 +1,9 @@
 require 'test_helper'
 
 class RolesControllerTest < ActionController::TestCase
-  setup do
-    @role = roles(:one)
-  end
+ def setup
+  @role = Role.new(name: "Developer")
+end
 
   test "should get index" do
     get :index
